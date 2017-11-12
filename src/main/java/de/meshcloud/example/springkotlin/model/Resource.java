@@ -1,7 +1,10 @@
 package de.meshcloud.example.springkotlin.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 public class Resource {
@@ -10,19 +13,44 @@ public class Resource {
     @GeneratedValue
     private Long id;
 
+    @NotNull
     private String name;
 
     private String description;
 
-    private double costPerHour;
+    @NotNull
+    private ResourceType type;
 
-    private LocalDate startDate;
+    @NotNull
+    private LocalDateTime startDate;
 
-    private LocalDate endDate;
+    @NotNull
+    private LocalDateTime endDate;
 
     @ManyToOne()
-    @JoinColumn(name = "project_id")
+    @JoinColumn(name = "project_id", nullable = false)
+    @NotNull
     private Project project;
+
+    private Resource() {
+        super();
+    }
+
+    public Resource(
+            String name,
+            String description,
+            ResourceType type,
+            LocalDateTime startDate,
+            LocalDateTime endDate,
+            Project project
+    ) {
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.project = project;
+    }
 
     public Long getId() {
         return id;
@@ -48,12 +76,12 @@ public class Resource {
         this.description = description;
     }
 
-    public double getCostPerHour() {
-        return costPerHour;
+    public ResourceType getType() {
+        return type;
     }
 
-    public void setCostPerHour(double costPerHour) {
-        this.costPerHour = costPerHour;
+    public void setType(ResourceType type) {
+        this.type = type;
     }
 
     public Project getProject() {
@@ -64,20 +92,24 @@ public class Resource {
         this.project = project;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
+    }
+
+    public long durationInHours() {
+        return startDate.until(endDate, ChronoUnit.HOURS);
     }
 
     @Override
@@ -87,22 +119,24 @@ public class Resource {
 
         Resource resource = (Resource) o;
 
-        if (Double.compare(resource.costPerHour, costPerHour) != 0) return false;
-        if (!id.equals(resource.id)) return false;
+        if (id != null ? !id.equals(resource.id) : resource.id != null) return false;
         if (name != null ? !name.equals(resource.name) : resource.name != null) return false;
-        if (description != null ? !description.equals(resource.description) : resource.description != null) return false;
+        if (description != null ? !description.equals(resource.description) : resource.description != null)
+            return false;
+        if (type != resource.type) return false;
+        if (startDate != null ? !startDate.equals(resource.startDate) : resource.startDate != null) return false;
+        if (endDate != null ? !endDate.equals(resource.endDate) : resource.endDate != null) return false;
         return project != null ? project.equals(resource.project) : resource.project == null;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = id.hashCode();
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        temp = Double.doubleToLongBits(costPerHour);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
+        result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
         result = 31 * result + (project != null ? project.hashCode() : 0);
         return result;
     }
@@ -113,7 +147,9 @@ public class Resource {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", costPerHour=" + costPerHour +
+                ", type=" + type +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
                 ", project=" + project +
                 '}';
     }
