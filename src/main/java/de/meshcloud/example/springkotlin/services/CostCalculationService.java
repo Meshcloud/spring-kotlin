@@ -24,16 +24,25 @@ public class CostCalculationService {
                 .sum();
     }
 
-    private Double calculateResourceCost(Resource resource) {
+    private double calculateResourceCost(Resource resource) {
+        double cost;
+        /*
+         * Simplified cost calculation. Should consider i.e. running VMs, networks, etc in OpenStack or
+         * Apps and Services in Cloud Foundry, etc.
+         */
         switch (resource.getType()) {
             case OPENSTACK:
-                return resource.durationInHours() * 0.03;
+                cost = 0.03;
+                break;
             case CLOUDFOUNDRY:
-                return resource.durationInHours() * 0.02;
+                cost = 0.02;
+                break;
             case KUBERNETES:
-                return resource.durationInHours() * 0.01;
+                cost = 0.01;
+                break;
             default:
                 throw new IllegalArgumentException("Resource Type '" + resource.getType() + "' not supported.");
         }
+        return resource.durationInHours() * cost;
     }
 }
