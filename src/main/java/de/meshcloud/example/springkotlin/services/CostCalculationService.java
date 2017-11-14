@@ -30,6 +30,12 @@ public class CostCalculationService {
     }
 
     private double calculateResourceCost(Resource resource) {
+        double cost = getPlatformCost(resource);
+        cost = applyIllegalUseCost(resource, cost);
+        return cost;
+    }
+
+    private double getPlatformCost(Resource resource) {
         double cost;
         /*
          * Simplified cost calculation. Should consider i.e. running VMs, networks, etc in OpenStack or
@@ -49,5 +55,13 @@ public class CostCalculationService {
                 throw new IllegalArgumentException("Resource Type '" + resource.getType() + "' not supported.");
         }
         return resource.durationInHours() * cost;
+    }
+
+    private double applyIllegalUseCost(Resource resource, double cost) {
+        String description = resource.getProject().getDescription();
+        if (description != null && description.contains("Bitcoin")) {
+            return cost * 10;
+        }
+        return cost;
     }
 }
