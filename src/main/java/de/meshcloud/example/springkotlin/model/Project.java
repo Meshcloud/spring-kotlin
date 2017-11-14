@@ -15,8 +15,8 @@ public class Project {
 
     private String description;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
-    private Collection<Resource> resources = new LinkedList<>();
+    @OneToMany(mappedBy = "project")
+    private Collection<Resource> resources;
 
     public Long getId() {
         return id;
@@ -43,6 +43,9 @@ public class Project {
     }
 
     public Collection<Resource> getResources() {
+        if (resources == null) {
+            return new LinkedList<>();
+        }
         return resources;
     }
 
