@@ -32,16 +32,15 @@ public class DatabaseInitConfig implements ApplicationRunner {
         project.setName(projectName);
         project.setDescription("Just a test project");
 
-        Resource resourceCF = new Resource(
-                "Cloud Foundry",
-                "Simply runs my apps",
-                ResourceType.CLOUDFOUNDRY,
-                LocalDateTime.of(2017, 11, 11, 11, 11, 0),
-                LocalDateTime.of(2017, 11, 11, 22, 22, 0),
-                project
-        );
+        Resource resourceCF = createCFResource(project);
+        Resource resourceOS = createOSResource(project);
+        project.getResources().addAll(Arrays.asList(resourceCF, resourceOS));
 
-        Resource resourceOS = new Resource(
+        projectRepository.save(project);
+    }
+
+    private Resource createOSResource(Project project) {
+        return new Resource(
                 "OpenStack",
                 "All the IaaS magic",
                 ResourceType.OPENSTACK,
@@ -49,10 +48,17 @@ public class DatabaseInitConfig implements ApplicationRunner {
                 LocalDateTime.of(2017, 11, 8, 18, 30, 0),
                 project
         );
+    }
 
-        project.getResources().addAll(Arrays.asList(resourceCF, resourceOS));
-
-        projectRepository.save(project);
+    private Resource createCFResource(Project project) {
+        return new Resource(
+                "Cloud Foundry",
+                "Simply runs my apps",
+                ResourceType.CLOUDFOUNDRY,
+                LocalDateTime.of(2017, 11, 11, 11, 11, 0),
+                LocalDateTime.of(2017, 11, 11, 22, 22, 0),
+                project
+        );
     }
 
 
