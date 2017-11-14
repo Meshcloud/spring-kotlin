@@ -1,5 +1,6 @@
 package de.meshcloud.example.springkotlin.services;
 
+import de.meshcloud.example.springkotlin.exceptions.NotFoundException;
 import de.meshcloud.example.springkotlin.model.Project;
 import de.meshcloud.example.springkotlin.model.Resource;
 import de.meshcloud.example.springkotlin.repositories.ProjectRepository;
@@ -19,6 +20,10 @@ public class CostCalculationService {
 
     public Double calculateCosts(Long projectId) {
         Project project = projectRepository.findOne(projectId);
+        if (project == null) {
+            throw new NotFoundException("Project with id " + projectId + " does not exist");
+        }
+
         return project.getResources().stream()
                 .mapToDouble(r -> calculateResourceCost(r))
                 .sum();
