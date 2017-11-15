@@ -26,12 +26,6 @@ public class DatabaseInitConfig implements ApplicationRunner {
     @Autowired
     private ResourceRepository resourceRepository;
 
-    public DatabaseInitConfig() {
-        if (projectName == null || projectName.equals("Really Bad Name")) {
-            projectName = "Slightly better name!";
-        }
-    }
-
     @Override
     public void run(ApplicationArguments args) throws Exception {
         initDB();
@@ -51,9 +45,16 @@ public class DatabaseInitConfig implements ApplicationRunner {
 
     private Project createProject(int i) {
         Project project = new Project();
-        project.setName(projectName + " " + i);
+        project.setName(optimizedProjectName() + " " + i);
         project.setDescription("Just a test project");
         return projectRepository.save(project);
+    }
+
+    public String optimizedProjectName() {
+        if (projectName == null || projectName.equals("Really Bad Name")) {
+            return "Slightly better name!";
+        }
+        return projectName;
     }
 
     private Resource createOSResource(Project project) {

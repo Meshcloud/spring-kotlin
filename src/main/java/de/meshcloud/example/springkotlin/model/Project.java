@@ -19,7 +19,7 @@ public class Project {
     private String description;
 
     @OneToMany(mappedBy = "project")
-    private Collection<Resource> resources;
+    private Collection<Resource> resources = new LinkedList<>();
 
     public Long getId() {
         return id;
@@ -46,9 +46,6 @@ public class Project {
     }
 
     public Collection<Resource> getResources() {
-        if (resources == null) {
-            return new LinkedList<>();
-        }
         return resources;
     }
 
