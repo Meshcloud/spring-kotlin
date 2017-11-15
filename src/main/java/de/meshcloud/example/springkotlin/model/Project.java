@@ -1,6 +1,9 @@
 package de.meshcloud.example.springkotlin.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -68,8 +71,7 @@ public class Project {
 
     @Override
     public int hashCode() {
-        int result;
-        result = id != null ? id.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (resources != null ? resources.hashCode() : 0);
