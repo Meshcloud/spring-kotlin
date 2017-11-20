@@ -11,4 +11,4 @@ You can simply clone this repository and execute the app with
 The master branch of this project contains the Kotlin implementation of this application. In the java branch, you can find the according Java implementation.
 
 ## Slides
-This example is used in a presentation, that emphasizes on the advantages of using Kotlin and can be found at [Google Drive](http://tinyurl.com/java-to-kotlin)
+This example is used in a presentation, that emphasizes on the advantages of using Kotlin and can be found at [Slideshare](https://www.slideshare.net/StefanTomm/from-java-to-kotlin-the-first-month-in-practice)
