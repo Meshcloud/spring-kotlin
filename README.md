@@ -7,8 +7,8 @@ As Spring Boot is a very popular framework in the Java world and Meshcloud is us
 You can simply clone this repository and execute the app with
 `./gradlew bootRun`
 
-## The different implementation
-The master branch of this project contains the Kotlin implementation of this application. In the java branch, you can find the according Java implementation.
+## The different implementations
+The master branch of this project contains the Kotlin implementation. In the java branch, you can find the according Java implementation.
 
 ## Slides
 This example is used in a presentation, that emphasizes on the advantages of using Kotlin and can be found at [Slideshare](https://www.slideshare.net/StefanTomm/from-java-to-kotlin-the-first-month-in-practice)
