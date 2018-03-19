@@ -38,13 +38,12 @@ class DatabaseInitConfig(
   }
 
   private fun createProject(i: Int): Project {
-    val project = Project()
-    project.name = "${optimizedProjectName()} $i"
+    val project = Project(name = "${optimizedProjectName()} $i")
     project.description = "Just a test project"
     return projectRepository.save(project)
   }
 
-  private fun optimizedProjectName() : String {
+  private fun optimizedProjectName(): String {
     return if (projectName == "Really Bad Name") {
       "Slightly better name!"
     } else projectName

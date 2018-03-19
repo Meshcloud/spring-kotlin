@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("projects")
-class ProjectListController(
-    private val projectRepository: ProjectRepository
-) {
+class ProjectListController(private val projectRepository: ProjectRepository) {
 
   @GetMapping("overview")
   fun overview(): List<ProjectListDTO> {

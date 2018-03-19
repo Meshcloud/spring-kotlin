@@ -7,9 +7,9 @@ data class ProjectListDTO(
     val name: String,
     val description: String?
 ) {
-  constructor(project: Project) : this (
-    id = project.id!!,
-    name = project.name,
-    description = project.description
+  constructor(project: Project) : this(
+      id = project.id!!,
+      name = project.name,
+      description = project.description
   )
 }
