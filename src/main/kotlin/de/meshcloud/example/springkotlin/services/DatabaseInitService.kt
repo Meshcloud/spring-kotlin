@@ -6,7 +6,6 @@ import de.meshcloud.example.springkotlin.model.Resource
 import de.meshcloud.example.springkotlin.model.ResourceType
 import de.meshcloud.example.springkotlin.repositories.ProjectRepository
 import de.meshcloud.example.springkotlin.repositories.ResourceRepository
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Component
@@ -37,8 +36,12 @@ class DatabaseInitService(
   }
 
   private fun createProject(i: Int): Project {
-    val project = Project(name = "${optimizedProjectName()} $i")
-    project.description = "Just a test project"
+    val project = Project(
+        name = "${optimizedProjectName()} $i"
+    ).apply {
+      description = "Just a test project"
+    }
+
     return projectRepository.save(project)
   }
 
