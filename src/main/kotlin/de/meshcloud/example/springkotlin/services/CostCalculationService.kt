@@ -1,17 +1,16 @@
 package de.meshcloud.example.springkotlin.services
 
-import de.meshcloud.example.springkotlin.exceptions.NotFoundException
 import de.meshcloud.example.springkotlin.model.Resource
 import de.meshcloud.example.springkotlin.model.ResourceType
 import de.meshcloud.example.springkotlin.repositories.ProjectRepository
+import de.meshcloud.example.springkotlin.repositories.findOneOrThrow
 import org.springframework.stereotype.Service
 
 @Service
 class CostCalculationService(private val projectRepository: ProjectRepository) {
 
   fun calculateCosts(projectId: Long): Double {
-    val project = projectRepository.findOne(projectId)
-        ?: throw NotFoundException("Project with id $projectId does not exist")
+    val project = projectRepository.findOneOrThrow(projectId)
 
     return project.resources
         .map { calculateResourceCost(it) }
@@ -19,9 +18,9 @@ class CostCalculationService(private val projectRepository: ProjectRepository) {
   }
 
   private fun calculateResourceCost(resource: Resource): Double {
-    var cost = getPlatformCost(resource)
-    cost = applyIllegalUseCost(resource, cost)
-    return cost
+    return getPlatformCost(resource).also {
+      applyIllegalUseCost(resource, it)
+    }
   }
 
   private fun getPlatformCost(resource: Resource): Double {
