@@ -17,11 +17,10 @@ class CostCalculationService(private val projectRepository: ProjectRepository) {
         .sum()
   }
 
-  private fun calculateResourceCost(resource: Resource): Double {
-    return getPlatformCost(resource).also {
-      applyIllegalUseCost(resource, it)
-    }
-  }
+  private fun calculateResourceCost(resource: Resource) =
+      getPlatformCost(resource).let {
+        applyIllegalUseCost(resource, it)
+      }
 
   private fun getPlatformCost(resource: Resource): Double {
     /*
@@ -33,6 +32,7 @@ class CostCalculationService(private val projectRepository: ProjectRepository) {
       ResourceType.CLOUDFOUNDRY -> 0.02
       ResourceType.KUBERNETES -> 0.01
     }
+    
     return resource.durationInHours() * cost
   }
 
