@@ -1,6 +1,5 @@
 package de.meshcloud.example.springkotlin.web;
 
-import de.meshcloud.example.springkotlin.repositories.ProjectRepository;
 import de.meshcloud.example.springkotlin.services.CostCalculationService;
 import de.meshcloud.example.springkotlin.util.PerformanceLogger;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,14 +13,8 @@ public class ProjectController {
 
     private CostCalculationService costCalculationService;
 
-    private ProjectRepository projectRepository;
-
-    public ProjectController(
-            CostCalculationService costCalculationService,
-            ProjectRepository projectRepository
-    ) {
+    public ProjectController(CostCalculationService costCalculationService) {
         this.costCalculationService = costCalculationService;
-        this.projectRepository = projectRepository;
     }
 
     @GetMapping("{projectId}/costs")
