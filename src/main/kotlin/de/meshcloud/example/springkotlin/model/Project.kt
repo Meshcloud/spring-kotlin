@@ -17,6 +17,6 @@ data class Project(
     var description: String? = null,
 
     @OneToMany(mappedBy = "project")
-    val resources: MutableCollection<Resource> = mutableListOf()
+    val resources: MutableList<Resource> = mutableListOf()
 
 )
