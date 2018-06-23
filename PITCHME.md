@@ -334,7 +334,7 @@ val dateAsText = Date().formatted()
 ```kotlin
 fun ProjectRepository.findOneOrThrow(id: Long): Project {
   return findOne(id) 
-    ?: throw NotFoundException("Could not find user with id $id")
+    ?: throw NotFoundException("Could not find project with id $id")
 }
 ```
 ---

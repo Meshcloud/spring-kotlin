@@ -19,4 +19,7 @@ data class Project(
     @OneToMany(mappedBy = "project")
     val resources: MutableList<Resource> = mutableListOf()
 
-)
+) {
+  val fullText: String
+    get() = "$name - $description"
+}

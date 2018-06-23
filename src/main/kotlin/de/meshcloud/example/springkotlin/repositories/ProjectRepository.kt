@@ -9,5 +9,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource
 interface ProjectRepository : JpaRepository<Project, Long>
 
 fun ProjectRepository.findOneOrThrow(id: Long): Project {
-  return findOne(id) ?: throw NotFoundException("Could not find user with id $id")
+  return findOne(id) ?: throw NotFoundException("Could not find project with id $id")
 }
