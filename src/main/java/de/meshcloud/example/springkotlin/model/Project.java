@@ -53,6 +53,10 @@ public class Project {
         this.resources = resources;
     }
 
+    public String getFullText() {
+        return name + " - " + description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

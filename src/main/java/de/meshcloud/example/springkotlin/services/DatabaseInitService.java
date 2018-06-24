@@ -10,7 +10,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Arrays;
 
 @Component
@@ -68,8 +68,8 @@ public class DatabaseInitService implements ApplicationRunner {
                 "OpenStack",
                 "All the IaaS magic",
                 ResourceType.OPENSTACK,
-                LocalDateTime.of(2017, 11, 5, 10, 15, 0),
-                LocalDateTime.of(2017, 11, 8, 18, 30, 0),
+                Instant.now().minusMillis(10000000),
+                Instant.now().minusMillis(5000),
                 project
         );
         return resourceRepository.save(resource);
@@ -80,8 +80,8 @@ public class DatabaseInitService implements ApplicationRunner {
                 "Cloud Foundry",
                 "Simply runs my apps",
                 ResourceType.CLOUDFOUNDRY,
-                LocalDateTime.of(2017, 11, 11, 11, 11, 0),
-                LocalDateTime.of(2017, 11, 11, 22, 22, 0),
+                Instant.now().minusMillis(12000000),
+                Instant.now().minusMillis(6000),
                 project
         );
         return resourceRepository.save(resource);

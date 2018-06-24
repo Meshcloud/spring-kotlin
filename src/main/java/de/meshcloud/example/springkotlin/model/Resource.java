@@ -2,6 +2,7 @@ package de.meshcloud.example.springkotlin.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -21,10 +22,10 @@ public class Resource {
     private ResourceType type;
 
     @NotNull
-    private LocalDateTime startDate;
+    private Instant startDate;
 
     @NotNull
-    private LocalDateTime endDate;
+    private Instant endDate;
 
     @ManyToOne()
     @JoinColumn(name = "project_id", nullable = false)
@@ -39,8 +40,8 @@ public class Resource {
             String name,
             String description,
             ResourceType type,
-            LocalDateTime startDate,
-            LocalDateTime endDate,
+            Instant startDate,
+            Instant endDate,
             Project project
     ) {
         this.name = name;
@@ -91,19 +92,19 @@ public class Resource {
         this.project = project;
     }
 
-    public LocalDateTime getStartDate() {
+    public Instant getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(Instant startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public Instant getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(Instant endDate) {
         this.endDate = endDate;
     }
 
