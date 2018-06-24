@@ -1,4 +1,4 @@
----?image=assets/image/background.png
+---?image=assets/image/background.jpg
 # From Java to Kotlin 
 The first year in practice
 ---
@@ -22,8 +22,8 @@ The first year in practice
 ### 100% Java interoperability
 @ul
 - all Java frameworks can be used without big problems
-- step-by-step conversion of existing Java app
 - same development paradigm as Java
+- step-by-step conversion of existing Java app
 - it's Java without the flaws + useful candy
 @ulend
 +++
@@ -32,7 +32,20 @@ The first year in practice
 - Practical, not academic
 - Expressive
 - Developed by JetBrains, Open Source -> great IDE support
+  + Convert Java to Kotlin Button
+  + Great tips how to optimize code within editor
 - Strictly-Typed -> Null-Safety
+@ulend
+---
+## Code Code Code
+![Syntax](assets/image/code.jpg)
++++
+## Context of Code Snippets
+@ul
+- Billing of Cloud Platform
+- Resources (VMs, Apps, etc)
+- Projects are container of resources
+- Service to calculate costs per project
 @ulend
 ---
 ## Integration into existing application
@@ -64,14 +77,6 @@ dependencies {
 }
 ```
 ---
-## Context of Code Snippets
-@ul
-- Billing of Cloud Platform
-- Resources (VMs, Apps, etc)
-- Projects are container of resources
-- Service to calculate costs per project
-@ulend
----
 ## Basic Syntax
 ![Syntax](assets/image/syntax.jpg)
 +++
@@ -83,7 +88,7 @@ var y: Boolean // mutable
 +++
 Type Inference
 ```java
-// Java
+// Java (< Java 10)
 Map<ResourceType, List<Resource>> resourceMapByType = 
     service.findResourceMapByType();
 ```
@@ -214,9 +219,9 @@ when {
 +++
 Collection creation
 ```kotlin
-var list = listOf('a', 'b', 'c')
-var set = setOf(1, 2)
-var map = mapOf('a' to 5, 'b' to 10)
+var myList = listOf('a', 'b', 'c')
+var mySet = setOf(1, 2)
+var myMap = mapOf('a' to 5, 'b' to 10)
 
 ```
 +++
@@ -227,7 +232,14 @@ for (i in 10 downTo 1)
 ```
 +++
 Destructuring
+```java
+// Java
+for (Map.Entry<String, Object> entry : map.entrySet()) {
+    print("Key: " + entry.getKey() + "Value: " + entry.getValue());
+}
+```
 ```kotlin
+// Kotlin
 for ((key, value) in map) {
     print("Key: $key, Value: $value")
 }
@@ -334,7 +346,7 @@ val dateAsText = Date().formatted()
 ```kotlin
 fun ProjectRepository.findOneOrThrow(id: Long): Project {
   return findOne(id) 
-    ?: throw NotFoundException("Could not find project with id $id")
+    ?: throw NotFoundException("Could not find project $id")
 }
 ```
 ---
@@ -351,6 +363,8 @@ inline fun <reified T : Any> createEmptyWrappedResource()
   return PagedResources(embedded)
 }
 ```
+@[1]
+@[4]
 ---
 ## Demo Application
 ![Syntax](assets/image/cloud.jpg)
@@ -376,6 +390,8 @@ LoC without data classes
 ### Questions?
 
 <br>
+
+@fa[envelope gp-contact](stomm@meshcloud.io)
 
 @fa[twitter gp-contact](@meshcloud)
 
