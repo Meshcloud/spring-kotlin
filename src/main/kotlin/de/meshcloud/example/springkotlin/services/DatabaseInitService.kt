@@ -9,7 +9,7 @@ import de.meshcloud.example.springkotlin.repositories.ResourceRepository
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Component
-import java.time.LocalDateTime
+import java.time.Instant
 
 @Component
 class DatabaseInitService(
@@ -37,10 +37,9 @@ class DatabaseInitService(
 
   private fun createProject(i: Int): Project {
     val project = Project(
-        name = "${optimizedProjectName()} $i"
-    ).apply {
-      description = "Just a test project"
-    }
+        name = "${optimizedProjectName()} $i",
+        description = "Just a test project"
+    )
 
     return projectRepository.save(project)
   }
@@ -56,8 +55,8 @@ class DatabaseInitService(
         name = "OpenStack",
         description = "All the IaaS magic",
         type = ResourceType.OPENSTACK,
-        startDate = LocalDateTime.of(2017, 11, 5, 10, 15, 0),
-        endDate = LocalDateTime.of(2017, 11, 8, 18, 30, 0),
+        startDate = Instant.now().minusMillis(10000000),
+        endDate = Instant.now().minusMillis(5000),
         project = project
     )
     return resourceRepository.save(resource)
@@ -68,8 +67,8 @@ class DatabaseInitService(
         name = "Cloud Foundry",
         description = "Simply runs my apps",
         type = ResourceType.CLOUDFOUNDRY,
-        startDate = LocalDateTime.of(2017, 11, 11, 11, 11, 0),
-        endDate = LocalDateTime.of(2017, 11, 11, 22, 22, 0),
+        startDate = Instant.now().minusMillis(12000000),
+        endDate = Instant.now().minusMillis(6000),
         project = project
     )
     return resourceRepository.save(resource)

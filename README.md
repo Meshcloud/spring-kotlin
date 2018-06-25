@@ -13,4 +13,4 @@ The master branch of this project contains the Kotlin implementation. In the jav
 There is also a mixed branch, which shows how you can use Java and Kotlin in parallel in your project.
 
 ## Slides
-This example is used in a presentation, that emphasizes on the advantages of using Kotlin and can be found at [Slideshare](https://www.slideshare.net/StefanTomm/from-java-to-kotlin-the-first-month-in-practice)
+This example is used in a presentation, that emphasizes on the advantages of using Kotlin and can be found at [GitPitch](https://gitpitch.com/Meshcloud/spring-kotlin-example/master)

@@ -1,5 +1,6 @@
 package de.meshcloud.example.springkotlin.model
 
+import java.time.Instant
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
 import javax.persistence.*
@@ -17,9 +18,9 @@ data class Resource(
 
     var type: ResourceType,
 
-    var startDate: LocalDateTime,
+    var startDate: Instant,
 
-    var endDate: LocalDateTime,
+    var endDate: Instant?,
 
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
