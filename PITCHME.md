@@ -260,7 +260,7 @@ Kotlin
 ```kotlin
 projectRepository
   .findAll()
-  .map { ProjectListDTO(it)}
+  .map { ProjectListDTO(it) }
 ```
 ---
 ## Avoid boilerplate
@@ -396,4 +396,6 @@ LoC without data classes
 
 @fa[github gp-contact](meshcloud)
 
-[https://github.com/Meshcloud/spring-kotlin-example @fa[git-repo]](https://github.com/Meshcloud/spring-kotlin-example)
+[https://github.com/Meshcloud/spring-kotlin-example](https://github.com/Meshcloud/spring-kotlin-example)
+
+[Artikel bei IT Aktuell](https://www.informatik-aktuell.de/entwicklung/programmiersprachen/von-java-zu-kotlin-in-kleinen-schritten-zum-ziel.html#top)
