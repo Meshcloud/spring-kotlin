@@ -8,7 +8,7 @@ theme : moon
 theme-override : assets/css/PITCHME.css
 # theme-override : assets/css/PITCHME.codemax.css
 highlight : ir-black
-logo : assets/image/DeveloperWeek.png
+logo : assets/image/itt-logo.png
 background-color : #293133
 transition : none
 published : true

@@ -1,6 +1,5 @@
----?image=assets/image/background.jpg
-# From Java to Kotlin 
-The first year in practice
+---?image=assets/image/it_tage_entry.png
+
 ---
 ## Agenda
 ### What to expect today?
@@ -12,7 +11,7 @@ The first year in practice
 ## My Background
 @ul
 - \>10 years Java
-- almost 1 year @ Meshcloud
+- more than 1 year @ Meshcloud
 - solution-oriented developer
 @ulend
 ---
@@ -54,7 +53,7 @@ The first year in practice
 ```groovy
 buildscript {
   ext {
-    kotlinVersion = '1.2.41'
+    kotlinVersion = '1.2.71'
     kotlinPlugin = 'org.jetbrains.kotlin:kotlin-gradle-plugin'
   }
   dependencies {
@@ -89,7 +88,7 @@ var y: Boolean // mutable
 Type Inference
 ```java
 // Java (< Java 10)
-Map<ResourceType, List<Resource>> resourceMapByType = 
+Map<ResourceType, List<Resource>> resourceMapByType =
     service.findResourceMapByType();
 ```
 ```kotlin
@@ -104,7 +103,7 @@ fun sum(a: Int, b: Int): Int {
 }
 
 // expression body & type inference
-fun sum(a: Int, b: Int) = a + b 
+fun sum(a: Int, b: Int) = a + b
 ```
 +++
 ### Everything is an expression
@@ -345,7 +344,7 @@ val dateAsText = Date().formatted()
 +++
 ```kotlin
 fun ProjectRepository.findOneOrThrow(id: Long): Project {
-  return findOne(id) 
+  return findOne(id)
     ?: throw NotFoundException("Could not find project $id")
 }
 ```
