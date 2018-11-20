@@ -8,8 +8,8 @@ theme : moon
 theme-override : assets/css/PITCHME.css
 # theme-override : assets/css/PITCHME.codemax.css
 highlight : ir-black
-logo : assets/image/DeveloperWeek.png
+logo : assets/image/meshcloud.png
 background-color : #293133
 transition : none
 published : true
-footnote : "From Java to Kotlin | Stefan Tomm | Meshcloud | 25.06.2018"
+footnote : "From Java to Kotlin | Stefan Tomm | Meshcloud | 11.12.2018"
