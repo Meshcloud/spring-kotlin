@@ -187,7 +187,7 @@ val headers = HttpHeaders().apply {
 also
 ```kotlin
 // also: return self & use "it" for current object
-fun createAndLogProject() {
+fun createAndLogProject(): Project {
   return generateProject().also { log(it) }
 }
 
@@ -288,7 +288,7 @@ data class Project(
 ## Expressive Arguments
 ![Syntax](assets/image/arguments.jpg)
 +++
-Default Arguments
+Default Parameters
 ```kotlin
 fun create(
   name: String,
@@ -296,8 +296,13 @@ fun create(
 )
 ```
 +++
-Named Arguments
+Named Parameters
+```java
+// Java
+create("My Project", "Some details")
+```
 ```kotlin
+// Kotlin
 create(
   name = "My Project",
   description = "Some details"
@@ -337,7 +342,6 @@ fun Date.formatted(): String {
 }
 
 val dateAsText = Date().formatted()
-
 ```
 @[1-5]
 @[6-7]

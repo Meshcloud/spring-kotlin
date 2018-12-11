@@ -13,6 +13,6 @@ class LocalDateConverter : AttributeConverter<Instant, Date> {
   }
 
   override fun convertToEntityAttribute(value: Date?): Instant? {
-    return value?.run { toInstant() }
+    return value?.toInstant()
   }
 }
